@@ -1,0 +1,14 @@
+{
+  "required" : [ "varInputDate" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varInputDate" : {
+      "title" : "varInputDate",
+      "description" : "The date for which latest market news should be retrieved. This is used to filter MarketEvent records for the selected day.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

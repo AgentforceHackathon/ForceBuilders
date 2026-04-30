@@ -1,0 +1,14 @@
+{
+  "required" : [ "varInteractionId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varInteractionId" : {
+      "title" : "varInteractionId",
+      "description" : "The InteractionId of the advisory segment that should be approved. This value is either returned automatically when only one segment exists or provided by the user when multiple segments are available.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

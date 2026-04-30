@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <attributeMappings>
+        <attributeName>Sector_Market_Impacted_Accounts_16jbm000001MroH.Get_Sector_Impact_Summary_for_Today_179bm000002YxMH.output_advisoryGenerated</attributeName>
+        <attributeType>CustomPluginFunctionAttribute</attributeType>
+        <mappingTargetName>advisoryGenerated</mappingTargetName>
+        <mappingType>Variable</mappingType>
+    </attributeMappings>
+    <description>Co-pilot agent to help Relationship manager do market monitoring, identifying impacted clients and sending them advisory, preparing pre-call briefs and help him connect with research team while he is on the go.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jbm000001MroH</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Client_Pre_Call_Brief_16jbm000001MroH</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Investment_Request_16jbm000001MroH</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>MonitorMarketEvents_16jbm000001MroH</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Research_Team_Communication_16jbm000001MroH</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Sector_Market_Impacted_Accounts_16jbm000001MroH</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>Send_Market_Advisory_16jbm000001MroH</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>MonitorMarketEvents_16jbm000001MroH</fullName>
+        <aiPluginUtterances>
+            <developerName>utterance_0_1776149641929</developerName>
+            <language>en_US</language>
+            <masterLabel>utterance_0_1776149641929</masterLabel>
+            <utterance>show latest news</utterance>
+        </aiPluginUtterances>
+        <canEscalate>false</canEscalate>
+        <description>This topic handles requests from Relationship Managers to view the latest market news. It retrieves today&apos;s MarketEvent records where ProcessedFlag is N and displays the latest market event titles and descriptions to the user.</description>
+        <developerName>MonitorMarketEvents_16jbm000001MroH</developerName>
+        <genAiPluginInstructions>
+            <description>Use this topic when the Relationship Manager asks to see the latest market news.</description>
+            <developerName>instructions_0_1776094191399</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776094191399</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Run the action &quot;Get Latest Market News&quot; using today&apos;s date.</description>
+            <developerName>instructions_0_1777353703727</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777353703727</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Display the returned news text directly to the user.</description>
+            <developerName>instructions_1_1777353703727</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777353703727</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If no market events are found for today with ProcessedFlag equal to N, respond:
+&quot;There is no latest market news available for today.&quot;</description>
+            <developerName>instructions_2_1777353703727</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777353703727</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Do not ask follow-up questions if the user only asks to see the latest news. Simply show the latest market event title followed by description.</description>
+            <developerName>instructions_3_1777353703727</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1777353703727</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>SendMessageToSlackChannel_179bm000002RNAf</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Get_Latest_Market_News_179bm000002RNAf</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>SendMessageToSlackChannel_179bm000002RNAf</fullName>
+            <description>Sends a message to a public or private Slack Channel.
+Messages may be in plaintext or Markdown format.
+This action is intended for group communication, announcements, or notifications within channels.
+This action should not be used to send direct messages to individuals.
+Upon successful completion, provide the user a friendly confirmation with a link to the message (in markdown).</description>
+            <developerName>SendMessageToSlackChannel_179bm000002RNAf</developerName>
+            <invocationTarget>slackAgentDynamic__SendMessageToSlackChannel</invocationTarget>
+            <invocationTargetType>slack</invocationTargetType>
+            <isConfirmationRequired>true</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>SendMessageToSlackChannel</localDeveloperName>
+            <mappingAttributes>
+                <label>channelId</label>
+                <name>input_channelId</name>
+                <parameterName>channelId</parameterName>
+                <parameterType>input</parameterType>
+            </mappingAttributes>
+            <masterLabel>Send Message to a Slack Channel</masterLabel>
+            <progressIndicatorMessage>Sending message...</progressIndicatorMessage>
+            <source>Slack__SendMessageToSlackChannel</source>
+        </localActions>
+        <localActions>
+            <fullName>Get_Latest_Market_News_179bm000002RNAf</fullName>
+            <description>Retrieves today&apos;s latest market news from MarketEvent records where ProcessedFlag is N and returns a formatted list showing each market event title followed by its description.</description>
+            <developerName>Get_Latest_Market_News_179bm000002RNAf</developerName>
+            <invocationTarget>Get_Latest_Market_News</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Latest_Market_News</localDeveloperName>
+            <masterLabel>Get Latest Market News</masterLabel>
+            <progressIndicatorMessage>Fetching latest market news...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>MonitorMarketEvents</localDeveloperName>
+        <masterLabel>Show Latest Market News</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>This topic applies only to showing today&apos;s latest market news from MarketEvent records with ProcessedFlag set to N. It reads and displays market event title and description. It does not approve records, update statuses, or send advisories.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Send_Market_Advisory_16jbm000001MroH</fullName>
+        <aiPluginUtterances>
+            <developerName>utterance_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Utterance 1</masterLabel>
+            <utterance>Send the advisory now
+Send market advisory
+Approve and send advisory
+Send advisory for today
+Trigger advisory for impacted clients</utterance>
+        </aiPluginUtterances>
+        <canEscalate>false</canEscalate>
+        <description>This topic handles requests from Relationship Managers to send or approve market advisory communications. It identifies pending advisory segments from Market_Event_Impacted_Account__c records, filters them for the selected day and Awaiting Approval status, and determines whether there are no segments, one segment, or multiple segments grouped by unique InteractionId.</description>
+        <developerName>Send_Market_Advisory_16jbm000001MroH</developerName>
+        <genAiPluginInstructions>
+            <description>Use this topic when the Relationship Manager asks to send or approve a market advisory.</description>
+            <developerName>instructions_0_1777527399503</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777527399503</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Run the action &quot;Check Pending Advisory Segments&quot; using today&apos;s date.</description>
+            <developerName>instructions_0_1777528573309</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777528573309</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If varStatus is &quot;NONE&quot;, respond only with:
+&quot;There are no pending advisory segments for today.&quot;
+Do not add any extra explanation.</description>
+            <developerName>instructions_0_1777529435926</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777529435926</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If varStatus is &quot;SINGLE&quot;, tell the user that there is one advisory segment available for today.</description>
+            <developerName>instructions_0_1777535056592</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777535056592</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Show the segment details from varChoiceText exactly once.</description>
+            <developerName>instructions_1_1777527399503</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777527399503</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After showing the segment details, ask only:
+&quot;Do you want to approve and send this advisory?&quot;</description>
+            <developerName>instructions_1_1777528573309</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777528573309</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Wait for the user to confirm with a clear approval response such as &quot;yes&quot;, &quot;approve&quot;, &quot;send it&quot;, or &quot;go ahead&quot;.</description>
+            <developerName>instructions_1_1777529435926</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1777529435926</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After the user confirms, take varSelectedInteractionId and run the action &quot;Approve Selected Advisory Segment&quot; using this InteractionId.</description>
+            <developerName>instructions_2_1777529435926</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1777529435926</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After approval for the SINGLE case is completed, respond only with:
+&quot;Advisory will be sent and status will be updated in this dashboard. You can check in sometime.&quot;
+Do not add any extra confirmation text.</description>
+            <developerName>instructions_3_1777529435926</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1777529435926</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If varStatus is &quot;MULTIPLE&quot;, present the grouped segment details from varChoiceText exactly once.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>9</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>When presenting multiple segments, show each InteractionId once and list all associated market event titles under that InteractionId.</description>
+            <developerName>instruction_2</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 2</masterLabel>
+            <sortOrder>10</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After showing the grouped segment details, ask only:
+&quot;Which InteractionId do you want to send?&quot;
+Do not repeat the segment list again.</description>
+            <developerName>instruction_3</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 3</masterLabel>
+            <sortOrder>11</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Wait for the user to respond.</description>
+            <developerName>instruction_4</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 4</masterLabel>
+            <sortOrder>12</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user provides a single InteractionId, run the action &quot;Approve_Selected_Advisory_Segment_179bm000002cH0H&quot; using that InteractionId.</description>
+            <developerName>instruction_5</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 5</masterLabel>
+            <sortOrder>13</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>If the user says &quot;send both&quot; or &quot;send all&quot;, run the action &quot;Approve_All_Advisory_Segments_179bm000002cH0H&quot; using today&apos;s date.</description>
+            <developerName>instruction_6</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 6</masterLabel>
+            <sortOrder>14</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After approval for the MULTIPLE case is completed, respond only with:
+&quot;Advisory will be sent and status will be updated in this dashboard. You can check in sometime.&quot;
+Do not add any extra confirmation text.</description>
+            <developerName>instruction_7</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 7</masterLabel>
+            <sortOrder>15</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Check_Pending_Advisory_Segments_179bm000002cH0H</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Approve_Selected_Advisory_Segment_179bm000002cH0H</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Approve_All_Advisory_Segments_179bm000002cH0H</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Approve_All_Advisory_Segments_179bm000002cH0H</fullName>
+            <description>Approves all pending advisory segments for the selected day by updating Market_Event_Impacted_Account__c records from Awaiting Approval to Approved.</description>
+            <developerName>Approve_All_Advisory_Segments_179bm000002cH0H</developerName>
+            <invocationTarget>Approve_All_Advisory_Segments</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Approve_All_Advisory_Segments</localDeveloperName>
+            <masterLabel>Approve All Advisory Segments</masterLabel>
+            <progressIndicatorMessage>Approving all advisory segments...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Check_Pending_Advisory_Segments_179bm000002cH0H</fullName>
+            <description>Identifies pending advisory segments for the selected day from Market_Event_Impacted_Account__c records where ProcessedFlag is Awaiting Approval. It groups records by unique InteractionId and determines whether there are no segments, one segment, or multiple segments. Returns status, selected InteractionId (if single), and a list of segments (if multiple).</description>
+            <developerName>Check_Pending_Advisory_Segments_179bm000002cH0H</developerName>
+            <invocationTarget>Check_Pending_Advisory_Segments</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Check_Pending_Advisory_Segments</localDeveloperName>
+            <masterLabel>Check Pending Advisory Segments</masterLabel>
+            <progressIndicatorMessage>Checking pending advisory segments...</progressIndicatorMessage>
+        </localActions>
+        <localActions>
+            <fullName>Approve_Selected_Advisory_Segment_179bm000002cH0H</fullName>
+            <description>Approves the selected advisory segment by updating Market_Event_Impacted_Account__c records for the given InteractionId from Awaiting Approval to Approved. Use this action after one segment is identified automatically or after the Relationship Manager selects an InteractionId from multiple available segments.</description>
+            <developerName>Approve_Selected_Advisory_Segment_179bm000002cH0H</developerName>
+            <invocationTarget>Approve_Selected_Advisory_Segment</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Approve_Selected_Advisory_Segment</localDeveloperName>
+            <masterLabel>Approve Selected Advisory Segment</masterLabel>
+            <progressIndicatorMessage>Approving the selected advisory segment...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Send_Market_Advisory</localDeveloperName>
+        <masterLabel>Send Market Advisory</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>This topic applies only to market advisory approval workflows. It works with Market_Event_Impacted_Account__c records that have ProcessedFlag set to Awaiting Approval and belong to the selected date. It supports identification of unique InteractionIds, automatic approval when only one segment exists, and user-driven selection when multiple segments exist. It does not handle advisory creation, modification, or historical analysis.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Investment_Request_16jbm000001MroH</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Handles client investment requests, fund purchases, and financial goal creation</description>
+        <developerName>Investment_Request_16jbm000001MroH</developerName>
+        <genAiPluginInstructions>
+            <description>When client says they want to invest, buy a fund, or set an investment goal — use Submit Investment Request action. Always confirm fund name and amount before submitting.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Use this topic when a client says they want to invest in a mutual fund, buy a fund, submit an investment request, or create an investment goal.
+
+Before using the action, make sure you have these three inputs:
+1. Fund name
+2. Investment amount
+3. Client unique identifier
+
+The client unique identifier must be a value that can uniquely identify the client’s Account in Salesforce as client Pan Number field configured by the business.
+
+Do not ask the client for a Salesforce record ID.
+
+If the client provides fund name but not amount, ask for the amount.
+If the client provides fund name and amount but not client identifier, ask for the client identifier.
+Once all three values are available, use the Submit Investment Request action.
+
+If the action returns an account-not-found message, ask the client to recheck and resend their registered client identifier.
+If the action succeeds, confirm that the investment request has been submitted for approval.</description>
+            <developerName>instructions_0_1776189302084</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776189302084</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Collect fund name, investment amount, and client unique identifier from the user. Use the identifier to find the matching Account in Salesforce. If no Account is found, return a clear error asking the user to provide a valid registered identifier. If an Account is found, create a Financial Goal record, populate Primary Owner with the Account ID, and submit the record for approval. Return a plain-language confirmation message.</description>
+            <developerName>instructions_1_1776189302084</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1776189302084</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Send_For_Approval_179bm000002S9iL</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Send_For_Approval_179bm000002S9iL</fullName>
+            <description>Use this when a client wants to invest in a fund or financial product. Collect the fund name, amount, and the client’s unique identifier. Find the matching Account, create a Financial Goal, and submit it for approval.</description>
+            <developerName>Send_For_Approval_179bm000002S9iL</developerName>
+            <invocationTarget>Send_For_Approval</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Send_For_Approval</localDeveloperName>
+            <masterLabel>Send For Approval</masterLabel>
+            <progressIndicatorMessage>Creating your investment request...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Investment_Request</localDeveloperName>
+        <masterLabel>Investment Request</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>When client says they want to invest, buy a fund, or set an investment goal — use Submit Investment Request action. Always confirm fund name and amount before submitting.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Research_Team_Communication_16jbm000001MroH</fullName>
+        <aiPluginUtterances>
+            <developerName>utterance_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Utterance 1</masterLabel>
+            <utterance>send this to research team: please analyze the latest oil market trends</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>utterance_2</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Utterance 2</masterLabel>
+            <utterance>share this with research team that we need a report on oil price movement</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>utterance_3</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Utterance 3</masterLabel>
+            <utterance>post this to research: check supply outlook for next quarter</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>utterance_4</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Utterance 4</masterLabel>
+            <utterance>tell research team to prepare oil market analysis</utterance>
+        </aiPluginUtterances>
+        <aiPluginUtterances>
+            <developerName>utterance_5</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Utterance 5</masterLabel>
+            <utterance>forward this message to research team</utterance>
+        </aiPluginUtterances>
+        <canEscalate>false</canEscalate>
+        <description>This subagent handles requests where the user wants to send or share a message with the research team. It is triggered when the user explicitly asks to forward, post, or communicate information to the research team via Slack.</description>
+        <developerName>Research_Team_Communication_16jbm000001MroH</developerName>
+        <genAiPluginInstructions>
+            <description>When the user expresses intent to send or share a message with the research team:
+
+1. Extract the relevant message content from the user’s input.
+2. Ensure the message is suitable for sending (non-empty and meaningful).
+3. Trigger the &quot;Send Research Message&quot; action.
+4. Pass the user&apos;s message as rawMessage to the action.
+5. Do not modify or execute the Slack sending yourself; always use the action.
+
+Only trigger this subagent when the user clearly intends to send or share information with the research team.
+
+Do not trigger this subagent for:
+- General research questions
+- Requests for analysis
+- Informational queries about research topics
+
+If the intent is unclear, do not trigger the action.</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Send_Message_to_Research_Team_on_Slack_179bm000002eG9l</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Send_Message_to_Research_Team_on_Slack_179bm000002eG9l</fullName>
+            <description>Sends a professionally worded message to the Research Team Slack channel using the user’s request as input.</description>
+            <developerName>Send_Message_to_Research_Team_on_Slack_179bm000002eG9l</developerName>
+            <invocationTarget>Send_Message_to_Research_Teamm</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Send_Message_to_Research_Team_on_Slack</localDeveloperName>
+            <masterLabel>Send Message to Research Team on Slack</masterLabel>
+            <progressIndicatorMessage>Sending your message to the Research Team...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Research_Team_Communication</localDeveloperName>
+        <masterLabel>Research Team Communication</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is only to identify when the user intends to send a message to the research team and trigger the appropriate action to deliver that message. Do not answer research-related questions yourself and do not generate analytical responses. Only focus on sending the user’s message to the research team via the configured Slack channel.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Sector_Market_Impacted_Accounts_16jbm000001MroH</fullName>
+        <canEscalate>false</canEscalate>
+        <description>This agent helps Relationship Managers proactively identify customers impacted by current market sector news based on their Financial Holdings and Financial Accounts.
+
+The agent analyzes:
+
+Financial Holdings by Sector
+Financial Account exposure
+Account ownership
+Market Events / News
+Risk vs Opportunity signals
+News volume trends
+
+and provides advisory recommendations for proactive customer engagement.</description>
+        <developerName>Sector_Market_Impacted_Accounts_16jbm000001MroH</developerName>
+        <genAiPluginInstructions>
+            <description>Show list of impacted accounts to RM</description>
+            <developerName>instructions_0_1776884686796</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1776884686796</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After Showing impacted customers always show this link If Context Variable {!$Context.advisoryGenerated}=&apos;Y&apos; After Showing Impacted customers. Inform RM that Advisory is generated and he can view by navigating to link https://orgfarm-2a4bc1e9a6.lightning.force.com/lightning/o/Market_Event_Impacted_Account__c/list?filterName=Today_s_Advisory</description>
+            <developerName>instructions_0_1777461845643</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777461845643</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Ask user, if he wants to send Advisory to all customers. Wait for his confirmation</description>
+            <developerName>instructions_0_1777463385222</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1777463385222</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Get_Sector_Impact_Summary_for_Today_179bm000002YxMH</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>Generate_Advisory_Message_Auto_Launched_179bm000002YxMH</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Get_Sector_Impact_Summary_for_Today_179bm000002YxMH</fullName>
+            <description>Returns impacted customer summary + creates impacted account records</description>
+            <developerName>Get_Sector_Impact_Summary_for_Today_179bm000002YxMH</developerName>
+            <invocationTarget>ImapctedAccountSectorwiseToday</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>Get_Sector_Impact_Summary_for_Today</localDeveloperName>
+            <mappingAttributes>
+                <label>advisoryGenerated</label>
+                <name>output_advisoryGenerated</name>
+                <parameterName>advisoryGenerated</parameterName>
+                <parameterType>output</parameterType>
+            </mappingAttributes>
+            <masterLabel>Get Sector Impact Summary for Today</masterLabel>
+            <source>Get_Sector_Impact_Summary_for_Today</source>
+        </localActions>
+        <localActions>
+            <fullName>Generate_Advisory_Message_Auto_Launched_179bm000002YxMH</fullName>
+            <description>Generates an advisory message for an account impacted by a market event. Use this action when a market event has been identified and an advisory message needs to be created and saved against the impacted account in Salesforce CRM.</description>
+            <developerName>Generate_Advisory_Message_Auto_Launched_179bm000002YxMH</developerName>
+            <invocationTarget>Generate_Advisory_Message_Auto_Launched</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Generate_Advisory_Message_Auto_Launched</localDeveloperName>
+            <masterLabel>Generate Advisory Message Auto Launched</masterLabel>
+            <progressIndicatorMessage>Generating advisory message for the impacted account...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Sector_Market_Impacted_Accounts</localDeveloperName>
+        <masterLabel>Sector Market Impacted Accounts</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>This action retrieves impacted customer accounts from the Calculated Insight.
+Identify customer accounts whose portfolios are exposed to sectors currently marked as:
+
+Risk Sector
+Opportunity Sector
+High News Volume Sector
+
+and recommend next best actions for the Relationship Manager.</scope>
+    </localTopics>
+    <localTopics>
+        <fullName>Client_Pre_Call_Brief_16jbm000001MroH</fullName>
+        <aiPluginUtterances>
+            <developerName>utterance_0_1777470980328</developerName>
+            <language>en_US</language>
+            <masterLabel>utterance_0_1777470980328</masterLabel>
+            <utterance>show pre call brief</utterance>
+        </aiPluginUtterances>
+        <canEscalate>false</canEscalate>
+        <description>Handles requests to generate a concise client pre-call brief, including personal information, portfolio holdings, family milestones, work history, and top discussion points for relationship managers.</description>
+        <developerName>Client_Pre_Call_Brief_16jbm000001MroH</developerName>
+        <genAiPluginInstructions>
+            <description>When the user asks for a pre-call brief, client summary, or client overview, use the action &quot;Client_Summary_Agent_Flow_179bm000002dk6f&quot;.
+
+Only run the action when one of these is available:
+- a valid current recordId from a client Account record, or
+- the client PAN provided by the user
+
+If a valid client recordId is available:
+- use the current recordId
+- do not ask for PAN
+- run the action and show the pre-call brief
+
+If recordId is not available:
+- do not run the action yet
+- first ask: &quot;To generate a pre-call brief, please provide the client PAN number.&quot;
+- once PAN is provided, run the action using PAN
+- show the pre-call brief
+
+Rules:
+- do not use client name alone for identification
+- do not show PAN or internal IDs in the response
+- if no client is found, ask the user to verify the PAN and try again</description>
+            <developerName>instruction_1</developerName>
+            <language xsi:nil="true"/>
+            <masterLabel>Instruction 1</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>Client_Summary_Agent_Flow_179bm000002dk6f</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>Client_Summary_Agent_Flow_179bm000002dk6f</fullName>
+            <description>Generates a pre-call brief for a client using account details, holdings, milestones, and work history, and logs the interaction in CRM.</description>
+            <developerName>Client_Summary_Agent_Flow_179bm000002dk6f</developerName>
+            <invocationTarget>Client_Summary</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+            <localDeveloperName>Client_Summary_Agent_Flow</localDeveloperName>
+            <masterLabel>Client Summary Agent Flow</masterLabel>
+            <progressIndicatorMessage>Generating Pre Call Brief...</progressIndicatorMessage>
+        </localActions>
+        <localDeveloperName>Client_Pre_Call_Brief</localDeveloperName>
+        <masterLabel>Client Pre Call Brief</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>This topic generates a structured pre-call brief for a single wealth client using CRM data. It retrieves client details, financial accounts, holdings, milestones, and work history, produces actionable advisory insights, and logs the interaction as a CRM activity.</scope>
+    </localTopics>
+    <masterLabel>Monitor</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jbm000001MroH</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jbm000001MroH</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varGeneratedSummary" : {
+      "title" : "varGeneratedSummary",
+      "description" : "Show this output in conversation as structured pre-call brief generated for the client, including personal info, holding info, milestones, work history, and top 3 discussion points.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : true,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

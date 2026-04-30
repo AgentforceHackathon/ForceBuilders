@@ -1,0 +1,15 @@
+{
+  "required" : [ "Input:Opportunity" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "Input:Opportunity" : {
+      "title" : "Opportunity Record ID",
+      "description" : "The record ID of the opportunity to suggest the stage for. There can be only one value for the record ID.",
+      "lightning:type" : "lightning__recordIdType",
+      "lightning:isPII" : true,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

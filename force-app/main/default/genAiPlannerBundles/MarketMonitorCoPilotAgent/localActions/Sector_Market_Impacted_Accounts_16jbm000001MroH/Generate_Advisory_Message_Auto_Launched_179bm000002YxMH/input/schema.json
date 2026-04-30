@@ -1,0 +1,21 @@
+{
+  "required" : [ "inputAccountId", "inputMarketEventId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "inputAccountId" : {
+      "title" : "inputAccountId",
+      "description" : "The Salesforce Account ID of the account impacted by the market event. This is used to retrieve the account record and update it with the generated advisory message.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "inputMarketEventId" : {
+      "title" : "inputMarketEventId",
+      "description" : "The Salesforce Record ID of the market event that is impacting the account. This is used to retrieve market event details needed to generate the advisory message.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

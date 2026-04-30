@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCalcInsightTemplate xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <builderExpression xsi:nil="true"/>
+    <creationType>Custom</creationType>
+    <dataspaceName>default</dataspaceName>
+    <dataspacePrefix xsi:nil="true"/>
+    <definitionType>CALCULATED_METRIC</definitionType>
+    <description xsi:nil="true"/>
+    <developerName>AffectedAccounts_Today_Sectorwise2</developerName>
+    <expression>SELECT ssot__Account__dlm.ssot__Id__c AS AccountId__c, ssot__Account__dlm.ssot__Name__c AS AccountName__c, ssot__FinancialAccount__dlm.ssot__Id__c AS FinancialAccountId__c, ssot__FinancialHolding__dlm.ssot__FinancialHoldingClass__c AS Sector__c, COUNT(ssot__FinancialHolding__dlm.ssot__Id__c) AS HoldingCount__c, TodayMarketingEvent2__cio.MarketingEventId__c AS MarketingEventId__c, TodayMarketingEvent2__cio.RiskOppFlag__c AS RiskOppFlag__c, TodayMarketingEvent2__cio.LatestCreatedDateTime__c AS LatestNewsDate__c, TodayMarketingEvent2__cio.InteractionId__c as InteractionId__c FROM ssot__FinancialHolding__dlm JOIN ssot__FinancialAccount__dlm ON ssot__FinancialAccount__dlm.ssot__Id__c = ssot__FinancialHolding__dlm.ssot__FinancialAccountId__c JOIN ssot__Account__dlm ON ssot__Account__dlm.ssot__Number__c = ssot__FinancialAccount__dlm.accountNumber__c JOIN TodayMarketingEvent2__cio ON ssot__FinancialHolding__dlm.ssot__FinancialHoldingClass__c = TodayMarketingEvent2__cio.Sector__c GROUP BY ssot__Account__dlm.ssot__Id__c, ssot__Account__dlm.ssot__Name__c, ssot__FinancialAccount__dlm.ssot__Id__c, ssot__FinancialHolding__dlm.ssot__FinancialHoldingClass__c, TodayMarketingEvent2__cio.MarketingEventId__c, TodayMarketingEvent2__cio.RiskOppFlag__c, TodayMarketingEvent2__cio.LatestCreatedDateTime__c, TodayMarketingEvent2__cio.InteractionId__c</expression>
+    <masterLabel>AffectedAccounts_Today_Sectorwise2</masterLabel>
+    <scheduleInterval>1</scheduleInterval>
+    <scheduleStartDateTime>2026-04-27T19:00:00.000Z</scheduleStartDateTime>
+    <sourceObjectDevName>AffectedAccounts_Today_Sectorwise2</sourceObjectDevName>
+    <templateVersion>1</templateVersion>
+</DataCalcInsightTemplate>

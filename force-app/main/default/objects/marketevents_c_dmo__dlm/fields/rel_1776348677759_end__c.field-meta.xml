@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>rel_1776348677759_end__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>marketevents_c_dmo_IAValue_c_map_sso_rel</label>
+    <referenceTo>ssot__FinancialHolding__dlm</referenceTo>
+    <relationshipLabel>marketevents_c_dmo_IAValue_c_map_sso_rel</relationshipLabel>
+    <relationshipName>rel_1776348677759_end</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

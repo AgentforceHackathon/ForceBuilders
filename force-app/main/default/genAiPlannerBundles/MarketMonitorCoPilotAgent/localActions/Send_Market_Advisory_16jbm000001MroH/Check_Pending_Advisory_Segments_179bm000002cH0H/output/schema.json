@@ -1,0 +1,33 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varChoiceText" : {
+      "title" : "varChoiceText",
+      "description" : "List of available advisory segments for the selected day. Each segment includes InteractionId and Market Event Title. Used when multiple segments are found.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "varSelectedInteractionId" : {
+      "title" : "varSelectedInteractionId",
+      "description" : "The InteractionId of the advisory segment when only one segment is found. This is used to directly proceed with approval.",
+      "lightning:type" : "lightning__numberType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    },
+    "varStatus" : {
+      "title" : "varStatus",
+      "description" : "Indicates the number of advisory segments found for the selected day. Possible values are NONE, SINGLE, or MULTIPLE. Used by the agent to decide the next step.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

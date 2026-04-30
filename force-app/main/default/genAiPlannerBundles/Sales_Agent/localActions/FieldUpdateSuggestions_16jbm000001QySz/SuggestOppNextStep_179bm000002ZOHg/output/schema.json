@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "opportunityNextStep" : {
+      "title" : "Opportunity Next Step",
+      "description" : "A JSON string describing the next step suggested for an opportunity. The suggestion is based on relevant opportunity information such as emails, voice and video calls, and content notes associated with the opportunity.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

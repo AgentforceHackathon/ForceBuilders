@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSrcDataModelFieldMap xmlns="http://soap.sforce.com/2006/04/metadata">
+    <filterApplied>false</filterApplied>
+    <masterLabel>HackathonIngestMarketNews_94cb7b81_7280_42d2_b3c8InteractionId_ReferThismarketevents_c_dmo_IngestionAPIInteractionId_ReferThisilenUZqpEbKHTim</masterLabel>
+    <sourceField>IngestMarketNews_NewsItem_CEBC375E.InteractionId_ReferThis__c</sourceField>
+    <targetField>marketevents_c_dmo_IngestionAPI__dlm.InteractionId_ReferThis__c</targetField>
+    <templateVersion>1</templateVersion>
+    <versionNumber>1.0</versionNumber>
+</DataSrcDataModelFieldMap>

@@ -1,0 +1,27 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "clientAccountId" : {
+      "title" : "clientAccountId",
+      "description" : "Name of the fund client wants to invest in",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "fundName" : {
+      "title" : "fundName",
+      "description" : "Name of the fund client wants to invest in",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    },
+    "investmentAmount" : {
+      "title" : "investmentAmount",
+      "description" : "Amount client wants to invest",
+      "lightning:type" : "lightning__currencyType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

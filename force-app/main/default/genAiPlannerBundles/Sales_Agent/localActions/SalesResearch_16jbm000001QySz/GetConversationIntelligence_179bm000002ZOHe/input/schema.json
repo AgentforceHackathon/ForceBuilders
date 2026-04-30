@@ -1,0 +1,22 @@
+{
+  "required" : [ "RelatedRecordId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "RelatedRecordId" : {
+      "title" : "Record ID",
+      "description" : "The unique ID of the parent record that contains the video or voice call data from which the conversation insights will be retrieved.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : true,
+      "copilotAction:isUserInput" : true
+    },
+    "VideoOrVoiceCallId" : {
+      "title" : "Video or Voice Call ID",
+      "description" : "Video Call Id or Voice Call Id to get conversation intelligence for.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : true,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

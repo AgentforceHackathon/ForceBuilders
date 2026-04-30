@@ -1,0 +1,21 @@
+{
+  "required" : [ "varPanNumber" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "recordId" : {
+      "title" : "recordId",
+      "description" : "Use this when the user is on a client Account record in Salesforce. Pass the current recordId so the flow can generate the pre-call brief without asking for more input.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "varPanNumber" : {
+      "title" : "varPanNumber",
+      "description" : "Use this when record context is not available. Ask the user for the client PAN and pass it to the flow to identify the client record. Do not show the PAN in the final response.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

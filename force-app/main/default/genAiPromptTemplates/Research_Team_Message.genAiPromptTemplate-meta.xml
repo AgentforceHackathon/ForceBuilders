@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>OCCm8mqfkwEVFKvkmwpp60boEbjlvRL23OyNT8eWDcc=_5</activeVersionIdentifier>
+    <developerName>Research_Team_Message</developerName>
+    <masterLabel>Research Team Message</masterLabel>
+    <overridable>false</overridable>
+    <templateVersions>
+        <content>Rewrite the user&apos;s request as a concise, professional Slack message for an internal research team.
+Preserve the meaning.
+Do not invent facts.
+If the message is short, make it polite and actionable.
+Return only the final Slack message.
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>OCCm8mqfkwEVFKvkmwpp60boEbjlvRL23OyNT8eWDcc=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Rewrite the user&apos;s request as a concise, professional Slack message for an internal research team.
+Preserve the meaning.
+Do not invent facts.
+If the message is short, make it polite and actionable.
+Return only the final Slack message.
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>rawMessage</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>rawMessage</masterLabel>
+            <referenceName>Input:rawMessage</referenceName>
+            <required>false</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>OCCm8mqfkwEVFKvkmwpp60boEbjlvRL23OyNT8eWDcc=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Rewrite the user&apos;s request as a concise, professional Slack message for an internal research team.
+this is the raw message {!$Input:rawMessage}
+Preserve the meaning.
+Do not invent facts.
+If the message is short, make it polite and actionable.
+Return only the final Slack message.
+
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>rawMessage</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>rawMessage</masterLabel>
+            <referenceName>Input:rawMessage</referenceName>
+            <required>false</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>OCCm8mqfkwEVFKvkmwpp60boEbjlvRL23OyNT8eWDcc=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Rewrite the following user request as a clear, professional Slack message addressed to the Research Team.
+
+User request:
+{!$Input:rawMessage}
+
+Rules:
+- Always start with &quot;Hi Research Team,&quot;
+- Make it polite and actionable
+- Expand short inputs into a complete sentence
+- Do not invent facts
+- Keep it concise
+- End with &quot;Thank you.&quot;
+
+Return only the final Slack message.
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>rawMessage</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>rawMessage</masterLabel>
+            <referenceName>Input:rawMessage</referenceName>
+            <required>false</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>OCCm8mqfkwEVFKvkmwpp60boEbjlvRL23OyNT8eWDcc=_4</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>Rewrite the following user request as a clear, professional Slack message addressed to the Research Team.
+
+User request:
+{!$Input:rawMessage}
+
+Rules:
+- Always start with &quot;Hi Research Team,&quot;
+- Make it polite and actionable
+- Expand short inputs into a complete sentence
+- Do not invent facts
+- Keep it concise
+- End with &quot;Thank you.&quot;
+</content>
+        <fileDroppingStrategy>{&quot;dropFilesBy&quot;:&quot;LAST_MODIFIED_DATE&quot;,&quot;dropFileStartingWith&quot;:&quot;OLDEST&quot;}</fileDroppingStrategy>
+        <inputs>
+            <apiName>rawMessage</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>rawMessage</masterLabel>
+            <referenceName>Input:rawMessage</referenceName>
+            <required>false</required>
+        </inputs>
+        <isCitationEnabled>false</isCitationEnabled>
+        <primaryModel>sfdc_ai__DefaultGPT5Mini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>OCCm8mqfkwEVFKvkmwpp60boEbjlvRL23OyNT8eWDcc=_5</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

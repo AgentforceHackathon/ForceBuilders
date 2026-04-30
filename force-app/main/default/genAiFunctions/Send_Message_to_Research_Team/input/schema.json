@@ -1,0 +1,14 @@
+{
+  "required" : [ "messageText" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "messageText" : {
+      "title" : "messageText",
+      "description" : "The research question or query that the RM wants to send to the research team on Slack",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

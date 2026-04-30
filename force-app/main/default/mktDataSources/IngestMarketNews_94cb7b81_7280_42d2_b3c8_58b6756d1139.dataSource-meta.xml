@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>IngestMarketNews_94cb7b81_7280_42d2_b3c8_58b6756d1139</masterLabel>
+    <prefix>Ing</prefix>
+</DataSource>

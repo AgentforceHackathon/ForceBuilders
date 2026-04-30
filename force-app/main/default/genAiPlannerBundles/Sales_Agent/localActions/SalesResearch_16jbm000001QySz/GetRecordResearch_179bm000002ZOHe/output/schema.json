@@ -1,0 +1,22 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "aiResearchPromptResultRecords" : {
+      "title" : "AI Research Prompt Result Records",
+      "description" : "A collection of AiResearchPromptResult records from the last 30 days associated with the specified record ID. Contains research insights, analysis results, and generated content related to the specified record.",
+      "maxItems" : 100,
+      "items" : {
+        "lightning:type" : "lightning__recordInfoType",
+        "lightning:sObjectInfo" : {
+          "apiName" : "aiResearchPromptResultRecords"
+        }
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

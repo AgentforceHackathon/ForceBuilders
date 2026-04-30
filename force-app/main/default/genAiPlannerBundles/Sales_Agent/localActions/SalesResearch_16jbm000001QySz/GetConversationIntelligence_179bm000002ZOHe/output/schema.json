@@ -1,0 +1,53 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "ConversationMomentInsights" : {
+      "title" : "Conversation Moment Insights",
+      "description" : "A list of Apex objects that contain insights from specific conversations during video or voice calls, such as pricing discussions or mentions of keywords about products or competitors. If no insights are found, the list remains empty.",
+      "items" : {
+        "lightning:type" : "@apexClassType/ConnectApi__ConversationMomentInsight"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "ConversationInsights" : {
+      "title" : "Conversation Insights",
+      "description" : "A list of Apex objects that contain insights related to the overall content of video or voice calls, such as generative conversation insights.",
+      "items" : {
+        "lightning:type" : "@apexClassType/ConnectApi__ConversationInsight"
+      },
+      "lightning:type" : "lightning__listType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "ConversationIntelligence" : {
+      "title" : "Conversation Intelligence",
+      "description" : "Conversation Intelligence",
+      "lightning:type" : "@apexClassType/ConnectApi__ConversationIntelligence",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "LatestVideoOrVoiceCallRecordId" : {
+      "title" : "Video or Voice Call ID",
+      "description" : "The record ID for the video or voice call related to the conversation.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "LatestVideoOrVoiceCallCreatedDate" : {
+      "title" : "Video or Voice Call Created Date",
+      "description" : "The date that the video or voice call related to the conversation was created.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

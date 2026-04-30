@@ -1,0 +1,14 @@
+{
+  "required" : [ "rawMessage" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "rawMessage" : {
+      "title" : "rawMessage",
+      "description" : "The user’s original message or request that should be refined and sent to the Research Team.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

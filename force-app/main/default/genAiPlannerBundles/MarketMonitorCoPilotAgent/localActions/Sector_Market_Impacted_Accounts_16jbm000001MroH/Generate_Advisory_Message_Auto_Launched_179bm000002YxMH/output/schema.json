@@ -1,0 +1,15 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "outputAdvisoryMessage" : {
+      "title" : "outputAdvisoryMessage",
+      "description" : "The advisory message generated for the account impacted by the market event. This output is returned to the agent to confirm successful generation and to display the message content to the user if required.",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true,
+      "copilotAction:useHydratedPrompt" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Returns impacted customer summary + creates impacted account records</description>
+    <developerName>Get_Sector_Impact_Summary_for_Today</developerName>
+    <invocationTarget>ImapctedAccountSectorwiseToday</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Sector_Impact_Summary_for_Today</localDeveloperName>
+    <masterLabel>Get Sector Impact Summary for Today</masterLabel>
+</GenAiFunction>

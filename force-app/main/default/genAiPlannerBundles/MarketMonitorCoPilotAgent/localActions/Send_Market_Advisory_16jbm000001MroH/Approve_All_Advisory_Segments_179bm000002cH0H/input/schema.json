@@ -1,0 +1,14 @@
+{
+  "required" : [ "varInputDate" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varInputDate" : {
+      "title" : "varInputDate",
+      "description" : "The date for which all pending advisory segments should be approved. This is used to find all Market_Event_Impacted_Account__c records for the selected day that are still in Awaiting Approval status.",
+      "lightning:type" : "lightning__dateType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

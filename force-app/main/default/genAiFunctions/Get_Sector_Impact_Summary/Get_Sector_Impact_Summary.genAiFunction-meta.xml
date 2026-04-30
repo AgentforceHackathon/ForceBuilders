@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Returns impacted customer summary as a single string for Agentforce</description>
+    <developerName>Get_Sector_Impact_Summary</developerName>
+    <invocationTarget>SectorMarketImpactService</invocationTarget>
+    <invocationTargetType>apex</invocationTargetType>
+    <isConfirmationRequired>false</isConfirmationRequired>
+    <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+    <localDeveloperName>Get_Sector_Impact_Summary</localDeveloperName>
+    <masterLabel>Get Sector Impact Summary</masterLabel>
+</GenAiFunction>

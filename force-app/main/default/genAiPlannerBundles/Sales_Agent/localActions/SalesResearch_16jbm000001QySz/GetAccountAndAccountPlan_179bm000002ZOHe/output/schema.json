@@ -1,0 +1,29 @@
+{
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "accountRecord" : {
+      "title" : "Account Record",
+      "description" : "The Account record returned by the Flow.",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "Account"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    },
+    "accountPlanRecord" : {
+      "title" : "Account Plan Record",
+      "description" : "The active Account Plan record returned by the Flow.",
+      "lightning:type" : "lightning__recordInfoType",
+      "lightning:sObjectInfo" : {
+        "apiName" : "AccountPlan"
+      },
+      "lightning:isPII" : false,
+      "copilotAction:isDisplayable" : false,
+      "copilotAction:isUsedByPlanner" : true
+    }
+  },
+  "lightning:type" : "lightning__objectType",
+  "lightning:textIndexed" : true
+}

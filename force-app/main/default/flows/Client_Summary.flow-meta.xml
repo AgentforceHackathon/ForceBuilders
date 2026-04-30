@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Generate_Client_360_Summary</name>
+        <label>Generate Client 360 Summary</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Client_360_Summary</actionName>
+        <actionType>generatePromptResponse</actionType>
+        <connector>
+            <targetReference>Create_Interaction_Task</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>Input:clientContext</name>
+            <value>
+                <elementReference>varPromptInputText</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Client_360_Summary</nameSegment>
+        <offset>0</offset>
+        <outputParameters>
+            <assignToReference>varGeneratedSummary</assignToReference>
+            <name>promptResponse</name>
+        </outputParameters>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Append_Family_Milestone_Text</name>
+        <label>Append Family Milestone Text</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varFamilyMilestonesText</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>frmCurrentLifeEventLine</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Life_Events</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Append_Work_History_Text</name>
+        <label>Append Work History Text</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varWorkHistoryText</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>frmCurrentLifeEventLine</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Life_Events</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Build_Portfolio_Text_Account_Header</name>
+        <label>Build Portfolio Text - Account Header</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varPortfolioText</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>frmCurrentFinancialAccountLine</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Financial_Holdings</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Build_Portfolio_Text_Holding_Line</name>
+        <label>Build Portfolio Text - Holding Line</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varPortfolioText</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>frmCurrentHoldingLine</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Financial_Holdings</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Client_Overview_Text</name>
+        <label>Set Client Overview Text</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varClientOverviewText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>frmClientOverviewText</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Financial_Accounts</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Final_Prompt_Input</name>
+        <label>Set Final Prompt Input</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>varPromptInputText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>frmPromptInputText</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Generate_Client_360_Summary</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Classify_Life_Event</name>
+        <label>Classify Life Event</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Through_Life_Events</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Family_Milestone</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Life_Events.FinServ__EventType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Baby</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Through_Life_Events.FinServ__EventType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Home</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Through_Life_Events.FinServ__EventType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>College</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Append_Family_Milestone_Text</targetReference>
+            </connector>
+            <label>Is Family Milestone</label>
+        </rules>
+        <rules>
+            <name>Is_Work_History</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Life_Events.FinServ__EventType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Job</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Through_Life_Events.FinServ__EventType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>New Business</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Loop_Through_Life_Events.FinServ__EventType__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Retirement</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Append_Work_History_Text</targetReference>
+            </connector>
+            <label>Is Work History</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>frmClientOverviewText</name>
+        <dataType>String</dataType>
+        <expression>&quot;Client Name: &quot; &amp;
+{!Get_Client_Record.Name} &amp;
+BR() &amp;
+&quot;Email: &quot; &amp;
+{!Get_Client_Record.Email__c}</expression>
+    </formulas>
+    <formulas>
+        <name>frmCurrentFinancialAccountLine</name>
+        <dataType>String</dataType>
+        <expression>&quot;Financial Account: &quot; &amp;
+{!Loop_Through_Financial_Accounts.Name} &amp;
+&quot; | Type: &quot; &amp;
+TEXT({!Loop_Through_Financial_Accounts.FinServ__FinancialAccountType__c}) &amp;
+&quot; | Balance:  $&quot; &amp;
+TEXT({!Loop_Through_Financial_Accounts.FinServ__Balance__c}) &amp;
+&quot; | Holdings: &quot; &amp;
+TEXT({!Loop_Through_Financial_Accounts.FinServ__HoldingCount__c}) &amp;
+&quot; | Status: &quot; &amp;
+TEXT({!Loop_Through_Financial_Accounts.FinServ__Status__c}) &amp;
+BR()</expression>
+    </formulas>
+    <formulas>
+        <name>frmCurrentHoldingLine</name>
+        <dataType>String</dataType>
+        <expression>&quot;- Holding: &quot; &amp;
+{!Loop_Through_Financial_Holdings.Name} &amp;
+&quot; | Asset Class: &quot; &amp;
+IF(
+  ISBLANK(TEXT({!Loop_Through_Financial_Holdings.FinServ__AssetClass__c})),
+  &quot;N/A&quot;,
+  TEXT({!Loop_Through_Financial_Holdings.FinServ__AssetClass__c})
+) &amp;
+&quot; | Category: &quot; &amp;
+IF(
+  ISBLANK(TEXT({!Loop_Through_Financial_Holdings.FinServ__AssetCategory__c})),
+  &quot;N/A&quot;,
+  TEXT({!Loop_Through_Financial_Holdings.FinServ__AssetCategory__c})
+) &amp;
+&quot; | Market Value: $&quot; &amp;
+TEXT({!Loop_Through_Financial_Holdings.FinServ__MarketValue__c}) &amp;
+&quot; | Shares: &quot; &amp;
+TEXT({!Loop_Through_Financial_Holdings.FinServ__Shares__c}) &amp;
+&quot; | Sector: &quot; &amp;
+IF(
+  ISBLANK(TEXT({!Loop_Through_Financial_Holdings.Sector__c})),
+  &quot;N/A&quot;,
+  TEXT({!Loop_Through_Financial_Holdings.Sector__c})
+) &amp;
+&quot; | % Change: &quot; &amp;
+TEXT({!Loop_Through_Financial_Holdings.FinServ__PercentChange__c}) &amp;
+BR()</expression>
+    </formulas>
+    <formulas>
+        <name>frmCurrentLifeEventLine</name>
+        <dataType>String</dataType>
+        <expression>&quot;- &quot; &amp;
+TEXT({!Loop_Through_Life_Events.FinServ__EventType__c}) &amp;
+&quot; | &quot; &amp;
+TEXT({!Loop_Through_Life_Events.FinServ__EventDate__c}) &amp;
+&quot; | &quot; &amp;
+BLANKVALUE({!Loop_Through_Life_Events.Description__c}, &quot;&quot;) &amp;
+BR()</expression>
+    </formulas>
+    <formulas>
+        <name>frmFamilyMilestonesFinal</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!varFamilyMilestonesText}),
+  &quot;No family milestones found.&quot;,
+  {!varFamilyMilestonesText}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>frmPortfolioFinal</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!varPortfolioText}),
+  &quot;No portfolio details found.&quot;,
+  {!varPortfolioText}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>frmPromptInputText</name>
+        <dataType>String</dataType>
+        <expression>&quot;Client Overview&quot; &amp;
+BR() &amp;
+{!varClientOverviewText} &amp;
+BR() &amp; BR() &amp;
+&quot;Family Milestones&quot; &amp;
+BR() &amp;
+{!frmFamilyMilestonesFinal} &amp;
+BR() &amp; BR() &amp;
+&quot;Recent Work History&quot; &amp;
+BR() &amp;
+{!frmWorkHistoryFinal} &amp;
+BR() &amp; BR() &amp;
+&quot;Current Portfolio&quot; &amp;
+BR() &amp;
+{!frmPortfolioFinal}</expression>
+    </formulas>
+    <formulas>
+        <name>frmTaskDescription</name>
+        <dataType>String</dataType>
+        <expression>&quot;Client 360 Pre-Call Brief:&quot; &amp;
+BR() &amp; BR() &amp;
+{!varGeneratedSummary} &amp;
+BR() &amp; BR() &amp;
+&quot;Generated via Market Monitoring Agent&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>frmWorkHistoryFinal</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  ISBLANK({!varWorkHistoryText}),
+  &quot;No recent work history found.&quot;,
+  {!varWorkHistoryText}
+)</expression>
+    </formulas>
+    <interviewLabel>Client Summary {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Client Summary Agent Flow</label>
+    <loops>
+        <name>Loop_Through_Financial_Accounts</name>
+        <label>Loop Through Financial Accounts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Financial_Accounts</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Build_Portfolio_Text_Account_Header</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_Final_Prompt_Input</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Through_Financial_Holdings</name>
+        <label>Loop Through Financial Holdings</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Financial_Holdings</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Build_Portfolio_Text_Holding_Line</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Loop_Through_Financial_Accounts</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Through_Life_Events</name>
+        <label>Loop Through Life Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Life_Events</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Classify_Life_Event</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Set_Client_Overview_Text</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Interaction_Task</name>
+        <label>Create Interaction Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Related_Contact_Task</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Description</field>
+            <value>
+                <elementReference>frmTaskDescription</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Client 360 Pre-Call Brief Generated</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>Get_Client_Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Client_Record</name>
+        <label>Get Client Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Contacts</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Pan_Number__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>varPanNumber</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Contacts</name>
+        <label>Get Contacts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Life_Events</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Client_Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Financial_Accounts</name>
+        <label>Get Financial Accounts</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Financial_Accounts</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FinServ__PrimaryOwner__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Client_Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>FinServ__FinancialAccount__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Financial_Holdings</name>
+        <label>Get Financial Holdings</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Financial_Holdings</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FinServ__FinancialAccount__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Loop_Through_Financial_Accounts.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>FinServ__FinancialHolding__c</object>
+        <sortField>FinServ__MarketValue__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Life_Events</name>
+        <label>Get Life Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Life_Events</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>FinServ__Client__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Client_Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>FinServ__LifeEvent__c</object>
+        <sortField>FinServ__EventDate__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Related_Contact_Task</name>
+        <label>Update Related Contact Task</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Create_Interaction_Task.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>WhoId</field>
+            <value>
+                <elementReference>Get_Contacts.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Client_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>contactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varClientOverviewText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varFamilyMilestonesText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varGeneratedSummary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>varPanNumber</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varPortfolioText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varPromptInputText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varWorkHistoryText</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

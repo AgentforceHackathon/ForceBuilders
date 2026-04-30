@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Automate market event monitoring to identify the impacted clients and generating the personalized advisory for them. In addition, generate pre-call brief for RM and help him research.</description>
+    <localTopicLinks>
+        <genAiPluginName>Monitor_Market_Events_16jbm000001MqnN</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>ambiguous_question_16jbm000001MqnN</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>off_topic_16jbm000001MqnN</genAiPluginName>
+    </localTopicLinks>
+    <localTopicLinks>
+        <genAiPluginName>topic_selector_16jbm000001MqnN</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>ambiguous_question_16jbm000001MqnN</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request is too ambiguous</description>
+        <developerName>ambiguous_question_16jbm000001MqnN</developerName>
+        <genAiPluginInstructions>
+            <description>You are a co-pilot agent for Wealth relationship manager, keep your tone friendly.</description>
+            <developerName>instruction0_179bm000002RL2P</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179bm000002RL2P</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>ambiguous_question</localDeveloperName>
+        <masterLabel>Ambiguous Question</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>Monitor_Market_Events_16jbm000001MqnN</fullName>
+        <canEscalate>false</canEscalate>
+        <description>To monitor the market events by calling news Api, analyze the same and pass to data cloud ingestion Api to do segmentation.</description>
+        <developerName>Monitor_Market_Events_16jbm000001MqnN</developerName>
+        <genAiPluginInstructions>
+            <description>You are a co-pilot agent for Wealth relationship manager, keep your tone friendly.</description>
+            <developerName>instruction0_179bm000002RL2Q</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179bm000002RL2Q</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>Monitor_Market_Events</localDeveloperName>
+        <masterLabel>Monitor Market Events</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>off_topic_16jbm000001MqnN</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Redirect conversation to relevant topics when user request goes off-topic</description>
+        <developerName>off_topic_16jbm000001MqnN</developerName>
+        <genAiPluginInstructions>
+            <description>You are a co-pilot agent for Wealth relationship manager, keep your tone friendly.</description>
+            <developerName>instruction0_179bm000002RL2R</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179bm000002RL2R</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>off_topic</localDeveloperName>
+        <masterLabel>Off Topic</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <localTopics>
+        <fullName>topic_selector_16jbm000001MqnN</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Welcome the user and determine the appropriate topic based on user input</description>
+        <developerName>topic_selector_16jbm000001MqnN</developerName>
+        <genAiPluginInstructions>
+            <description>You are a co-pilot agent for Wealth relationship manager, keep your tone friendly.</description>
+            <developerName>instruction0_179bm000002RL2S</developerName>
+            <language>en_US</language>
+            <masterLabel>instruction0_179bm000002RL2S</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localDeveloperName>topic_selector</localDeveloperName>
+        <masterLabel>Topic Selector</masterLabel>
+        <pluginType>Topic</pluginType>
+    </localTopics>
+    <masterLabel>Market Monitor Agent</masterLabel>
+    <plannerType>Atlas__ConcurrentMultiAgentOrchestration</plannerType>
+</GenAiPlannerBundle>
