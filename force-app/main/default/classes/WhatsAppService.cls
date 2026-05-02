@@ -1,39 +1,49 @@
 public without sharing class WhatsAppService {
 
-    // Send regular text message
-    public static void sendWhatsAppMessage(String toNumber, String messageBody) {
-        try {
-            System.debug('========== WhatsApp Send ==========');
+    // Wrapper class for Flow input
+    public class WhatsAppRequest {
+        @InvocableVariable(required=true)
+        public String toNumber;
 
-            // Create HTTP request
-            HttpRequest req = new HttpRequest();
-            req.setEndpoint('callout:WhatsappNC/Messages.json'); // Named Credential
-            req.setMethod('POST');
-            req.setHeader('Content-Type', 'application/x-www-form-urlencoded');
+        @InvocableVariable(required=true)
+        public String messageBody;
+    }
 
-            //  sandbox / WhatsApp number
-            String fromNumber = 'whatsapp:+14155238886';
+    @InvocableMethod(
+        label='Send WhatsApp Message'
+        description='Send WhatsApp message via Twilio'
+    )
+    public static void sendWhatsAppMessage(List<WhatsAppRequest> requests) {
 
-            // Ensure proper WhatsApp format
-            String formattedToNumber = toNumber.startsWith('whatsapp:')
-                ? toNumber
-                : 'whatsapp:' + toNumber;
+        for (WhatsAppRequest reqData : requests) {
+            try {
+                System.debug('========== WhatsApp Send ==========');
 
-            // Build payload
-            String payload = 'From=' + EncodingUtil.urlEncode(fromNumber, 'UTF-8')
-                + '&To=' + EncodingUtil.urlEncode(formattedToNumber, 'UTF-8')
-                + '&Body=' + EncodingUtil.urlEncode(messageBody, 'UTF-8');
+                HttpRequest req = new HttpRequest();
+                req.setEndpoint('callout:WhatsappNC/Messages.json');
+                req.setMethod('POST');
+                req.setHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            req.setBody(payload);
+                String fromNumber = 'whatsapp:+14155238886';
 
-            // Send request
-            Http http = new Http();
-            HttpResponse res = http.send(req);
+                String formattedToNumber = reqData.toNumber.startsWith('whatsapp:')
+                    ? reqData.toNumber
+                    : 'whatsapp:' + reqData.toNumber;
 
-            System.debug('Response: ' + res.getStatusCode() + ' - ' + res.getBody());
+                String payload = 'From=' + EncodingUtil.urlEncode(fromNumber, 'UTF-8')
+                    + '&To=' + EncodingUtil.urlEncode(formattedToNumber, 'UTF-8')
+                    + '&Body=' + EncodingUtil.urlEncode(reqData.messageBody, 'UTF-8');
 
-        } catch (Exception e) {
-            System.debug('Error: ' + e.getMessage());
+                req.setBody(payload);
+
+                Http http = new Http();
+                HttpResponse res = http.send(req);
+
+                System.debug('Response: ' + res.getStatusCode() + ' - ' + res.getBody());
+
+            } catch (Exception e) {
+                System.debug('Error: ' + e.getMessage());
+            }
         }
     }
 }
